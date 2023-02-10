@@ -1,73 +1,112 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+		<meta name="description" content="Spruha -  Admin Panel HTML Dashboard Template">
+		<meta name="author" content="Spruko Technologies Private Limited">
+		<meta name="keywords" content="admin,dashboard,panel,bootstrap admin template,bootstrap dashboard,dashboard,themeforest admin dashboard,themeforest admin,themeforest dashboard,themeforest admin panel,themeforest admin template,themeforest admin dashboard,cool admin,it dashboard,admin design,dash templates,saas dashboard,dmin ui design">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+		<!-- Favicon -->
+		<link rel="icon" href="{{ asset('assets/img/brand/favicon.ico') }}" type="image/x-icon"/>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+		<!-- Title -->
+		<title>Spruha - Bootstrap Premium HTML Dashboard Template</title>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+		<!-- Bootstrap css-->
+		<link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+		<!-- Icons css-->
+		<link href="{{ asset('assets/plugins/web-fonts/icons.css') }}" rel="stylesheet"/>
+		<link href="{{ asset('assets/plugins/web-fonts/font-awesome/font-awesome.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/plugins/web-fonts/plugin.css') }}" rel="stylesheet"/>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+		<!-- Style css-->
+		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/skins.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/dark-style.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/colors/default.css') }}" rel="stylesheet">
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+		<!-- Color css-->
+		<link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('assets/css/colors/color.css') }}">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+	</head>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+	<body class="main-body leftmenu dark-theme">')
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+		<!-- Loader -->
+		<div id="global-loader">
+			<img src="../../assets/img/loader.svg" class="loader-img" alt="Loader">
+		</div>
+		<!-- End Loader -->
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+		<!-- Page -->
+		<div class="page main-signin-wrapper">
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+			<!-- Row -->
+			<div class="row signpages text-center">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="row row-sm">
+							<div class="col-lg-6 col-xl-5 d-none d-lg-block text-center bg-primary details">
+								<div class="mt-5 pt-4 p-2 pos-absolute">
+									<img src="../../assets/img/brand/logo-light.png" class="header-brand-img mb-4" alt="logo">
+									<div class="clearfix"></div>
+									<img src="../../assets/img/svgs/user.svg" class="ht-100 mb-0" alt="user">
+									<h5 class="mt-4 text-white">Create Your Account</h5>
+									<span class="tx-white-6 tx-13 mb-5 mt-xl-0">Signup to create, discover and connect with the global community</span>
+								</div>
+							</div>
+							<div class="col-lg-6 col-xl-7 col-xs-12 col-sm-12 login_form ">
+								<div class="container-fluid">
+									<div class="row row-sm">
+										<div class="card-body mt-2 mb-2">
+											<img src="../../assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-left float-left mb-4" alt="logo">
+											<div class="clearfix"></div>
+											<form action="{{ route('login') }}" method="POST">
+												@csrf
+												<h5 class="text-left mb-2">Signin to Your Account</h5>
+												<p class="mb-4 text-muted tx-13 ml-0 text-left">Signin to create, discover and connect with the global community</p>
+												<div class="form-group text-left">
+													<label>Email</label>
+													<input class="form-control" name="email" placeholder="Enter your email" type="text">
+												</div>
+												<div class="form-group text-left">
+													<label>Password</label>
+													<input class="form-control" name="password" placeholder="Enter your password" type="password">
+												</div>
+												<button class="btn ripple btn-main-primary btn-block">Sign In</button>
+											</form>
+											<div class="text-left mt-5 ml-0">
+												<div class="mb-1"><a href="">Forgot password?</a></div>
+												<div>Don't have an account? <a href="#">Register Here</a></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Row -->
+
+		</div>
+		<!-- End Page -->
+
+		<!-- Jquery js-->
+		<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+
+		<!-- Bootstrap js-->
+		<script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js') }}"></script>
+		<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+		<!-- Select2 js-->
+		<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+
+		<!-- Custom js -->
+		<script src="{{ asset('assets/js/custom.js') }}"></script>
+
+	</body>
+</html>
