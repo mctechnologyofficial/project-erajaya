@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home');
+        if($request->user()->roles->first()->name == "Sales"){
+            return view('sales.home');
+        }
     }
 }

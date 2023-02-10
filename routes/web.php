@@ -30,3 +30,7 @@ Route::get('/force/logout', function (Request $request) {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['role:Sales']], function () {
+    //
+});
