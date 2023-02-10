@@ -2,11 +2,11 @@
     <div class="container">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><i class="ti-home"></i>Dashboard</a>
+                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>Dashboard</a>
             </li>
             @role('Sales')
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html"><i class="ti-"></i>Transaction</a>
+                    <a class="nav-link" href="{{ route('sales.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
                 </li>
             @endrole
         </ul>

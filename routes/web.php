@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Sales\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['role:Sales']], function () {
-    //
+    Route::controller(TransactionController::class)->group(function(){
+        Route::get('/transaction', 'index')->name('sales.transaction.index');
+    });
 });
