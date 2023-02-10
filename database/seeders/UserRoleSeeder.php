@@ -45,6 +45,12 @@ class UserRoleSeeder extends Seeder
             'password'      => Hash::make('password'),
         ], $default_user_value));
 
+        $admin = User::create(array_merge([
+            'name'          => 'Admin',
+            'email'         => 'admin@gmail.com',
+            'password'      => Hash::make('password'),
+        ], $default_user_value));
+
         $cashier = User::create(array_merge([
             'name'          => 'Cashier',
             'email'         => 'cashier@gmail.com',
@@ -55,10 +61,12 @@ class UserRoleSeeder extends Seeder
         $role_sales = Role::create(['name'    =>  'Sales']);
         $role_warehouse = Role::create(['name'    =>  'Warehouse']);
         $role_casheer = Role::create(['name'    =>  'Cashier']);
+        $role_admin = Role::create(['name'    =>  'Admin']);
 
         $superadmin->assignRole('Super Admin');
         $sales->assignRole('Sales');
         $warehouse->assignRole('Warehouse');
         $cashier->assignRole('Cashier');
+        $admin->assignRole('Admin');
     }
 }
