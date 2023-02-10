@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'imei',
+        'product_name',
+        'price',
+        'stock',
+        'category'
+    ];
 }

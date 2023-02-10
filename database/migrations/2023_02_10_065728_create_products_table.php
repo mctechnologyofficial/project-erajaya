@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('imei')->unique()->nullable();
+            $table->string('product_name');
+            $table->string('price');
+            $table->string('stock');
+            $table->string('category');
             $table->timestamps();
         });
     }
