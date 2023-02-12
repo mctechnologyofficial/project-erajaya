@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="card custom-card">
                 <div class="card-header text-right">
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-outline-success mb-3">+ Create New User</a>
+                    <a href="{{ route('admin.product.create') }}" class="btn btn-outline-success mb-3">+ Create New Product</a>
                 </div>
                 <div class="card-body">
                     @if($message = Session::get('success'))
@@ -22,15 +22,34 @@
                             <thead>
                                 <tr>
                                     <th class="wd-5p">#</th>
+                                    <th class="wd-20p">IMEI</th>
                                     <th class="wd-20p">Name</th>
-                                    <th class="wd-20p">Email</th>
-                                    <th class="wd-15p">Position</th>
-                                    <th class="wd-20p">Image</th>
+                                    <th class="wd-15p">Price</th>
+                                    <th class="wd-5p">Stock</th>
+                                    <th class="wd-20p">Category</th>
                                     <th class="wd-15p">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{--  --}}
+                                @foreach ($product as $key => $data)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $data->imei }}</td>
+                                        <td>{{ $data->product_name }}</td>
+                                        <td>{{ $data->price }}</td>
+                                        <td>{{ $data->stock }}</td>
+                                        <td>{{ $data->category }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.product.edit', $data->id) }}" class="btn btn-outline-info btn-block mb-3">Edit</a>
+                                            <form action="{{ route('admin.product.destroy', $data->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+
+                                                <button type="submit" class="btn btn-outline-danger btn-block">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

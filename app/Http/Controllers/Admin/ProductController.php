@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.product.add');
     }
 
     /**
@@ -38,7 +38,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::create([
+            'imei'          => $request->imei,
+            'product_name'  => $request->name,
+            'price'         => $request->price,
+            'stock'         => $request->stock,
+            'category'      => $request->category,
+        ]);
+
+        return redirect()->route('admin.product.index')->with('success', 'Product has been submitted successfully !');
     }
 
     /**
@@ -60,7 +68,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('Admin.product.edit', compact(['product']));
     }
 
     /**
@@ -72,7 +82,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->update([
+            'imei'          => $request->imei,
+            'product_name'  => $request->name,
+            'price'         => $request->price,
+            'stock'         => $request->stock,
+            'category'      => $request->category,
+        ]);
+
+        return redirect()->route('admin.product.index')->with('success', 'Product has been updated successfully !');
     }
 
     /**
@@ -83,6 +103,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->delete();
+
+        return redirect()->route('admin.product.index')->with('success', 'Product has been destroyed successfully !');
     }
 }

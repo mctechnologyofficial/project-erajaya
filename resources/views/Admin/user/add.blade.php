@@ -32,12 +32,13 @@
                             <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="form-group">
-                            <label for="file-browser">Image</label>
+                            <label for="file-browser">Image</label> <br />
+                            <img src="" id="output" class="img-thumbnail w-25 mb-3" >
                             <div class="input-group file-browser">
                                 <input type="text" id="file-browser" class="form-control border-right-0 browse-file" placeholder="choose" readonly>
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary">
-                                        Browse <input type="file" name="image" style="display: none;" multiple accept="image/*">
+                                        Browse <input type="file" id="inputfile" name="image" style="display: none;" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                     </span>
                                 </label>
                             </div>
@@ -49,4 +50,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $('#inputfile').on('change', function(){
+            var filename = $(this).val().replace(/C:\\fakepath\\/i, '')
+
+            $('#file-browser').val(filename).trigger('change');
+        });
+    </script>
 @endsection

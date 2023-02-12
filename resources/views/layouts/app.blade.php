@@ -75,6 +75,7 @@
 
 		<!-- Jquery js-->
 		@include('Components.js')
+        @yield('js')
 
 	</body>
 </html>

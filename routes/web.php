@@ -55,5 +55,10 @@ Route::group(['middleware' => ['role:Admin']], function () {
     // Product Routes
     Route::controller(ProductController::class)->group(function(){
         Route::get('/product', 'index')->name('admin.product.index');
+        Route::get('/product/create', 'create')->name('admin.product.create');
+        Route::post('/product/store', 'store')->name('admin.product.store');
+        Route::get('/product/{id}/edit', 'edit')->name('admin.product.edit');
+        Route::put('/product/{id}/update', 'update')->name('admin.product.update');
+        Route::delete('/product/{id}/destroy', 'destroy')->name('admin.product.destroy');
     });
 });
