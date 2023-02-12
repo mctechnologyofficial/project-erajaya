@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Sales;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
-        return view('Sales.Transaction.list', compact(['transaction']));
+        $product = Product::all();
+
+        return view('Admin.product.list', compact(['product']));
     }
 
     /**

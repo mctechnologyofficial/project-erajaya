@@ -329,7 +329,9 @@
                 </div>
             </div><!-- col end -->
         </div><!-- Row end -->
-    </div><!-- col end -->
+    </div>
+    <!-- col end -->
+
     <div class="col-sm-12 col-lg-12 col-xl-4 mt-xl-4">
         <div class="card custom-card card-dashboard-calendar pb-0">
             <label class="main-content-label mb-2 pt-1">Recent transcations</label>
@@ -592,7 +594,8 @@
                 </div>
             </div>
         </div>
-    </div><!-- col end -->
-</div><!-- Row end -->
-
+    </div>
+    <!-- col end -->
+</div>
+<!-- Row end -->
 @endsection

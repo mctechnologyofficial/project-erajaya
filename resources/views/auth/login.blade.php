@@ -33,7 +33,7 @@
 
 	</head>
 
-	<body class="main-body leftmenu dark-theme">')
+	<body class="main-body leftmenu dark-theme">
 
 		<!-- Loader -->
 		<div id="global-loader">

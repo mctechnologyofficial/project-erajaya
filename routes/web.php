@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Sales\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,5 +37,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['role:Sales']], function () {
     Route::controller(TransactionController::class)->group(function(){
         Route::get('/transaction', 'index')->name('sales.transaction.index');
+    });
+});
+
+Route::group(['middleware' => ['role:Admin']], function () {
+
+    // User Routes
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/user', 'index')->name('admin.user.index');
+        Route::get('/user/create', 'create')->name('admin.user.create');
+        Route::post('/user/store', 'store')->name('admin.user.store');
+        Route::get('/user/{id}/edit', 'edit')->name('admin.user.edit');
+        Route::put('/user/{id}/update', 'update')->name('admin.user.update');
+        Route::delete('/user/{id}/destroy', 'destroy')->name('admin.user.destroy');
+    });
+
+    // Product Routes
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/product', 'index')->name('admin.product.index');
     });
 });
