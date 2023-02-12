@@ -37,6 +37,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['role:Sales']], function () {
     Route::controller(TransactionController::class)->group(function(){
         Route::get('/transaction', 'index')->name('sales.transaction.index');
+        Route::get('/transaction/create-customer', 'createCustomer')->name('sales.transaction.createcustomer');
+        Route::post('/transaction/store-customer', 'storeCustomer')->name('sales.transaction.storecustomer');
+        Route::get('/transaction/create-transaction', 'createTransaction')->name('sales.transaction.createtransaction');
+        Route::post('/transaction/store-transaction', 'storeTransaction')->name('sales.transaction.storetransaction');
+        Route::get('/transaction/getprice/{id}', 'getPrice');
     });
 });
 
