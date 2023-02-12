@@ -48,18 +48,6 @@
                     </div>
                 </div>
             </div>
-            <div class="main-header-notification">
-                <a class="nav-link icon" href="chat.html">
-                    <i class="fe fe-message-square header-icons"></i>
-                    <span class="badge badge-success nav-link-badge">6</span>
-                </a>
-            </div>
-            <div class="dropdown d-md-flex">
-                <a class="nav-link icon full-screen-link" href="">
-                    <i class="fe fe-maximize fullscreen-button fullscreen header-icons"></i>
-                    <i class="fe fe-minimize fullscreen-button exit-fullscreen header-icons"></i>
-                </a>
-            </div>
             <div class="dropdown main-profile-menu">
                 <a class="d-flex" href="">
                     <span class="main-img-user" ><img alt="avatar" src="{{ Auth::user()->image == null ? asset('assets/img/users/1.jpg') : asset(Auth::user()->image) }}"></span>
