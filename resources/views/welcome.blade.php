@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+General error: 1813 Tablespace for table '`erajaya`.`migrations`' exists. Please DISCARD the tablespace before IMPORT<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
