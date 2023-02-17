@@ -11,13 +11,14 @@ class Transaction extends Model
 
     protected $primaryKey = 'id';
     public $incrementing = false;
-    
+
     protected $fillable = [
         'id',
         'customer_id',
         'product_id',
         'qty',
         'total_price',
-        'input_by'
+        'input_by',
+        'status'
     ];
 }

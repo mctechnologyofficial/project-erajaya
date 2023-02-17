@@ -48,7 +48,8 @@ Route::group(['middleware' => ['role:Sales']], function () {
 
 Route::group(['middleware' => ['role:Warehouse']], function () {
     Route::controller(WarehouseTransactionController::class)->group(function(){
-        Route::get('/transaction', 'index')->name('warehouse.transaction.index');
+        Route::get('/transactions', 'index')->name('warehouse.transaction.index');
+        Route::put('/transactions/{id}/update', 'update')->name('warehouse.transaction.update');
     });
 });
 

@@ -3573,7 +3573,7 @@ fieldset:disabled a.btn {
 }
 
 .card-dashboard-twentysix.card-dark-two {
-    background-image: linear-gradient(to bottom, #0a47ff 0%, #6259ca 100%);
+    background-image: linear-gradient(to bottom, #0a47ff 0%, #273d95 100%);
     background-repeat: repeat-x;
 }
 
@@ -6366,7 +6366,7 @@ div.dtr-modal div.dtr-modal-content {
 }
 
 .main-nav-column .nav-link.active i:not([class*=' tx-']) {
-    color: #6259ca !important;
+    color: #273d95 !important;
 }
 
 .main-nav-column .nav-link.active::before {
@@ -7126,11 +7126,13 @@ div.dtr-modal div.dtr-modal-content {
     padding: 9px 15px;
     line-height: 1.462;
     border-top: 0;
+    color: read;
 }
 
 .table thead th {
     vertical-align: bottom;
     border-bottom: 1px solid #e8e8f7;
+    color: red;
 }
 
 .table tbody+tbody {
@@ -7177,7 +7179,8 @@ div.dtr-modal div.dtr-modal-content {
     border-top-width: 1px;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    background-color: #efefff;
+    background-color: #273d95;
+    color: #fff;
 }
 
 .table-borderless th,
@@ -7533,7 +7536,7 @@ table.dataTable thead td {
     padding: 8px 10px;
     font-weight: 700;
     font-size: 12px;
-    color: #434b63;
+    color: #fff;
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -7691,28 +7694,28 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 
 .tooltip-primary .tooltip-inner {
-    background-color: #6259ca;
+    background-color: #273d95;
     color: #ffffff;
 }
 
 .tooltip-primary.bs-tooltip-top .arrow::before,
 .tooltip-primary.bs-tooltip-auto[x-placement^="top"] .arrow::before {
-    border-top-color: #6259ca;
+    border-top-color: #273d95;
 }
 
 .tooltip-primary.bs-tooltip-bottom .arrow::before,
 .tooltip-primary.bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
-    border-bottom-color: #6259ca;
+    border-bottom-color: #273d95;
 }
 
 .tooltip-primary.bs-tooltip-left .arrow::before,
 .tooltip-primary.bs-tooltip-auto[x-placement^="left"] .arrow::before {
-    border-left-color: #6259ca;
+    border-left-color: #273d95;
 }
 
 .tooltip-primary.bs-tooltip-right .arrow::before,
 .tooltip-primary.bs-tooltip-auto[x-placement^="right"] .arrow::before {
-    border-right-color: #6259ca;
+    border-right-color: #273d95;
 }
 
 .tooltip-secondary .tooltip-inner {
@@ -9319,7 +9322,7 @@ div.dataTables_wrapper div.dataTables_length select {
 
 .main-header-right .nav-link.icon {
     font-size: 20px;
-    color: #5f6eb0;
+    color: #273d95;
     cursor: pointer;
     line-height: .9;
     padding: 0.6rem 0.6rem;
@@ -14163,7 +14166,7 @@ textarea.parsley-success:focus {
 }
 
 .main-content-title {
-    color: #5f6eb0;
+    color: #273d95;
     font-weight: 500;
     font-size: 32px;
     text-indent: -1px;
@@ -16151,7 +16154,7 @@ ul.inbox-pagination {
 
 .mail-option .dropdown-menu>li>a:hover {
     background: #f1f2f9;
-    color: #6259ca;
+    color: #273d95;
 }
 
 /* ###### Mail  ###### */
@@ -16680,7 +16683,7 @@ ul.inbox-pagination {
 }
 
 .btn-default.active {
-    background: #6259ca;
+    background: #273d95;
     color: #ffffff;
     border-bottom: 2px solid #433c9a;
 }
@@ -16871,7 +16874,7 @@ ul.inbox-pagination {
 }
 
 .crypto-btc-usd .nav-link.active {
-    background: #6259ca;
+    background: #273d95;
     border-radius: 3px;
     color: #ffffff;
 }
@@ -16978,11 +16981,11 @@ ul.inbox-pagination {
 }
 
 input:checked+label.payment-cards {
-    border-color: #6259ca !important;
+    border-color: #273d95 !important;
     position: relative !important;
     display: block !important;
     border-width: 1px;
-    color: #6259ca;
+    color: #273d95;
 }
 
 .form input:checked+label:after,
@@ -16993,7 +16996,7 @@ form input:checked+label:after {
     line-height: 17px;
     border-style: solid;
     border-width: 0 35px 35px 0px;
-    border-color: #6259ca #6259ca transparent;
+    border-color: #273d95 #273d95 transparent;
     display: block;
     position: absolute;
     top: 0;
@@ -17007,7 +17010,7 @@ form input:checked+label:after {
     line-height: 17px;
     border-style: solid;
     border-width: 0 35px 35px 0px;
-    border-color: #6259ca #6259ca transparent;
+    border-color: #273d95 #273d95 transparent;
     display: block;
     position: absolute;
     top: 0;
@@ -17058,7 +17061,7 @@ form input:checked+label:before,
     height: 0;
     border: solid transparent;
     border-width: 10px;
-    border-top-color: #6259ca;
+    border-top-color: #273d95;
     content: '';
     pointer-events: none;
 }
@@ -17073,7 +17076,7 @@ form input:checked+label:before,
 }
 
 .crypto-buysell-card .nav.panel-tabs li a.active {
-    background: #6259ca;
+    background: #273d95;
     color: #ffffff;
 }
 
@@ -17099,14 +17102,14 @@ form input:checked+label:before,
 }
 
 .crypto-wallet .clipboard-icon {
-    background-color: #6259ca !important;
-    border-color: #6259ca !important;
+    background-color: #273d95 !important;
+    border-color: #273d95 !important;
     border-radius: 0 4px 4px 0 !important;
     top: 0;
     right: 0;
     font-size: 14px;
-    background: #6259ca;
-    border: 1px solid #6259ca;
+    background: #273d95;
+    border: 1px solid #273d95;
     cursor: pointer;
     padding: 0.375rem 0.75rem;
     font-size: 0.875rem;
@@ -17117,14 +17120,14 @@ form input:checked+label:before,
 
 .crypto-wallet .clipboard-icon:hover,
 .crypto-wallet .clipboard-icon:focus {
-    background-color: #6259ca !important;
-    border-color: #6259ca !important;
+    background-color: #273d95 !important;
+    border-color: #273d95 !important;
     border-radius: 0 4px 4px 0 !important;
     top: 0;
     right: 0;
     font-size: 14px;
-    background: #6259ca;
-    border: 1px solid #6259ca;
+    background: #273d95;
+    border: 1px solid #273d95;
     cursor: pointer;
     padding: 0.375rem 0.75rem;
     font-size: 0.875rem;
@@ -17269,7 +17272,7 @@ table.dataTable thead .sorting_asc_disabled:after,
     font-size: 20px;
     line-height: 37px;
     font-size: 17px;
-    color: #6259ca;
+    color: #273d95;
 }
 
 .product-timeline ul.timeline-1:before {
@@ -17510,7 +17513,7 @@ table.dataTable thead .sorting_asc_disabled:after,
     line-height: 1.573;
     color: #ffffff;
     border-radius: 4px;
-    background: #6259ca;
+    background: #273d95;
 }
 
 #checkoutsteps>.actions .disabled a {
@@ -17574,7 +17577,7 @@ table.dataTable thead .sorting_asc_disabled:after,
 }
 
 #checkoutsteps>.steps .current a .number {
-    background: #6259ca;
+    background: #273d95;
     color: #ffffff;
 }
 
@@ -17663,7 +17666,7 @@ table.dataTable thead .sorting_asc_disabled:after,
 }
 
 .card-pay .tabs-menu li a.active {
-    background: #6259ca;
+    background: #273d95;
     color: #ffffff;
 }
 
@@ -17696,14 +17699,14 @@ table.dataTable thead .sorting_asc_disabled:after,
 }
 
 .item1-links .nav-item a.active {
-    background-color: #6259ca;
+    background-color: #273d95;
     color: #ffffff;
     border-radius: 0;
 }
 
 .item1-links .nav-link:hover,
 .item1-links .nav-link:focus {
-    background-color: #6259ca;
+    background-color: #273d95;
     color: #ffffff;
     border-radius: 0;
 }
@@ -17759,11 +17762,11 @@ table.dataTable thead .sorting_asc_disabled:after,
 }
 
 .track .step.active:before {
-    background: #6259ca;
+    background: #273d95;
 }
 
 .track .step.active .icon {
-    background: #6259ca;
+    background: #273d95;
     color: #ffffff;
 }
 
@@ -66567,7 +66570,7 @@ a.tag-addon:hover {
 }
 
 .tag-indigo {
-    background-color: #6259ca;
+    background-color: #273d95;
     color: #ffffff;
 }
 
@@ -66979,7 +66982,7 @@ a.tag-addon:hover {
     bottom: 0;
     width: 240px;
     overflow-y: auto;
-    background-color: #5f6eb0;
+    background-color: #273d95;
     z-index: 1000;
     visibility: hidden;
     transform: translateX(-240px);
@@ -67869,7 +67872,7 @@ a.tag-addon:hover {
     line-height: 1.573;
     color: #ffffff;
     border-radius: 4px;
-    background: #6259ca;
+    background: #273d95;
 }
 
 .wizard>.actions a:hover,
@@ -69853,8 +69856,8 @@ a.tag-addon:hover {
 
 .list-group-item.active {
     color: #ffffff;
-    background-color: #6259ca;
-    border-color: #6259ca;
+    background-color: #273d95;
+    border-color: #273d95;
 }
 
 /* ###### List-group ###### */
@@ -71720,13 +71723,7 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 32px;
     width: 32px;
     line-height: 15px;
-    background-repeat: no-repeat;
     border: 2px solid transparent;
-    background-position: center;
-    transition: background-color 0.1s linear;
-    -moz-transition: background-color 0.1s linear;
-    -webkit-transition: background-color 0.1s linear;
-    -o-transition: background-color 0.1s linear;
     border-radius: 3px;
 }
 
@@ -71737,7 +71734,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 #back-to-top:hover {
-    background: #ffffff !important;
+    background: #5565a9 !important;
 }
 
 .contact-icon {

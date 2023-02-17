@@ -5,9 +5,6 @@
     <div class="row row-sm">
         <div class="col-lg-12">
             <div class="card custom-card">
-                <div class="card-header text-right">
-                    <a href="{{ route('sales.transaction.createcustomer') }}" class="btn btn-outline-success mb-3">+ Create New Transaction</a>
-                </div>
                 <div class="card-body">
                     @if($message = Session::get('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -22,24 +19,30 @@
                             <thead>
                                 <tr>
                                     <th class="wd-5p">Transaction ID</th>
-                                    <th class="wd-20p">Customer Name</th>
-                                    <th class="wd-20p">Product Name</th>
+                                    <th class="wd-10p">Product Name</th>
                                     <th class="wd-5p">Qty</th>
-                                    <th class="wd-10p">Total Price</th>
-                                    <th class="wd-15p">Input By</th>
                                     <th class="wd-15p">Transaction Date</th>
+                                    <th class="wd-15p">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($transaction as $data)
                                     <tr>
                                         <td>{{ $data->id }}</td>
-                                        <td>{{ $data->customername }}</td>
                                         <td>{{ $data->productname }}</td>
                                         <td>{{ $data->qty }}</td>
-                                        <td>{{ $data->total_price }}</td>
-                                        <td>{{ $data->input_by }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at) }}</td>
+                                        <td>
+                                            @if ($data->status == 0)
+                                                <form action="{{ route('warehouse.transaction.update', $data->id) }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <button type="submit" class="btn btn-outline-success btn-block">Accept</button>
+                                                </form>
+                                            @else
+                                                <a href="javascript:void(0)" class="btn btn-outline-info btn-block">Already Accepted</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

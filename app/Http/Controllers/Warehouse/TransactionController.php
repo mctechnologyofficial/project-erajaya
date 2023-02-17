@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Warehouse;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -14,7 +15,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::selectRaw('products.product_name AS productname, transactions.*')
+        ->join('products', 'products.id', '=', 'transactions.product_id')
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+        return view('Warehouse.Transaction.list', compact(['transaction']));
     }
 
     /**
@@ -69,7 +75,11 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Transaction::where('id', $id)->update([
+            'status'    => 1,
+        ]);
+
+        return redirect()->route('warehouse.transaction.index')->with('success', 'Transaction with id '. $id . ' has been updated successfully !');
     }
 
     /**

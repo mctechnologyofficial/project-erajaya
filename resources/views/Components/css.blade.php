@@ -20,3 +20,8 @@
 
 <!-- Mutipleselect css-->
 <link rel="stylesheet" href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}">
+
+<!-- Internal DataTables css-->
+<link href="{{ asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/datatable/responsivebootstrap4.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css') }}" rel="stylesheet" />

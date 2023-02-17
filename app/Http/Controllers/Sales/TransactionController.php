@@ -80,7 +80,7 @@ class TransactionController extends Controller
         $product = Product::find($request->productid);
 
         if($product->stock > 0){
-            $transactionid = "EJ-".mt_rand(0, 999999);
+            $transactionid = "EJ-".mt_rand(0, 9999999999);
             $customerid = Session::get('customerid');
 
             $transaction = Transaction::create([
@@ -90,6 +90,7 @@ class TransactionController extends Controller
                 'qty'               => $request->qty,
                 'total_price'       => $request->totalprice,
                 'input_by'          => $request->inputby,
+                'status'            => 0
             ]);
             return redirect()->route('sales.transaction.index')->with('success', 'Transaction Success !');
         }else{

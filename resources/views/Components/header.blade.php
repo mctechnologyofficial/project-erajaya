@@ -9,43 +9,45 @@
         </div>
         <div class="main-header-center">
             <div class="responsive-logo">
-                <a href="{{ route('home') }}"><img src="{{ asset('assets/img/brand/erajaya.png') }}" class="mobile-logo" alt="logo"></a>
-                <a href="{{ route('home') }}"><img src="{{ asset('assets/img/brand/erajaya.png') }}" class="mobile-logo-dark w-50" alt="logo"></a>
+                <a href="{{ route('home') }}"><img src="{{ asset('assets/img/brand/erajaya.png') }}" class="mobile-logo w-25" alt="logo"></a>
+                <a href="{{ route('home') }}"><img src="{{ asset('assets/img/brand/erajaya.png') }}" class="mobile-logo-dark w-25" alt="logo"></a>
             </div>
         </div>
         <div class="main-header-right">
             <div class="dropdown main-header-notification">
-                <a class="nav-link icon" href="">
-                    <i class="fe fe-bell header-icons"></i>
-                    <span class="badge badge-danger nav-link-badge">4</span>
-                </a>
+                @php
+                    $totaltransaction = App\Models\Transaction::where('status', 0)->count();
+                    $transaction = App\Models\Transaction::where('status', 0)
+                    ->orderBy('created_at', 'DESC')
+                    ->limit(5)
+                    ->get();
+                @endphp
+                @role('Warehouse')
+                    <a class="nav-link icon" href="javascript:void(0)">
+                        <i class="fe fe-bell header-icons"></i>
+                        <span class="badge badge-danger nav-link-badge">{{ $totaltransaction }}</span>
+                    </a>
+                @endrole
                 <div class="dropdown-menu">
                     <div class="header-navheading">
-                        <p class="main-notification-text">You have 1 unread notification<span class="badge badge-pill badge-primary ml-3">View all</span></p>
+                        <p class="main-notification-text">You have {{ $totaltransaction }} unread notification</p>
                     </div>
                     <div class="main-notification-list">
-                        <div class="media new">
-                            <div class="main-img-user online"><img alt="avatar" src="../../assets/img/users/5.jpg"></div>
-                            <div class="media-body">
-                                <p>Congratulate <strong>Olivia James</strong> for New template start</p><span>Oct 15 12:32pm</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="main-img-user"><img alt="avatar" src="../../assets/img/users/2.jpg"></div>
-                            <div class="media-body">
-                                <p><strong>Joshua Gray</strong> New Message Received</p><span>Oct 13 02:56am</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="main-img-user online"><img alt="avatar" src="../../assets/img/users/3.jpg"></div>
-                            <div class="media-body">
-                                <p><strong>Elizabeth Lewis</strong> added new schedule realease</p><span>Oct 12 10:40pm</span>
-                            </div>
-                        </div>
+                        @foreach ($transaction as $data)
+                            <a href="{{ route('warehouse.transaction.index') }}">
+                                <div class="media" id="{{ $data->id }}">
+                                    {{-- <div class="main-img-user online"><img alt="avatar" src="{{ asset($data->image) }}"></div> --}}
+                                    <div class="media-body">
+                                        <p>Transaction with id <strong>{{ $data->id }}</strong> must be validated.</p>
+                                        <span>{{ \Carbon\Carbon::parse($data->created_at) }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
-                    <div class="dropdown-footer">
-                        <a href="#">View All Notifications</a>
-                    </div>
+                    {{-- <div class="dropdown-footer">
+                        <a href="javascript:void(0)" class="markall">Mark all as read</a>
+                    </div> --}}
                 </div>
             </div>
             <div class="dropdown main-profile-menu">

@@ -63,9 +63,10 @@
 		<!-- End Page -->
 
 		<!-- Back-to-top -->
-		<a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
+		<a href="#top" id="back-to-top" style="background-color: #273d95;"><i class="fe fe-arrow-up"></i></a>
 
 		@include('Components.js')
+        @yield('js')
 
 	</body>
 </html>
