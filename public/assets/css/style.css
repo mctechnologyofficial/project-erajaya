@@ -4,7 +4,7 @@
 Project        :   SPRUHA - HTML5 Bootstrap Admin Template
 Version        :   V.1
 Create Date    :   03/10/20
-Copyright      :   Spruko Technologies Private Limited 
+Copyright      :   Spruko Technologies Private Limited
 Author         :   SprukoSoft
 Author URL     :   https://themeforest.net/user/sprukosoft
 Support	       :   support@spruko.com
@@ -9319,7 +9319,7 @@ div.dataTables_wrapper div.dataTables_length select {
 
 .main-header-right .nav-link.icon {
     font-size: 20px;
-    color: #4a4d51;
+    color: #5f6eb0;
     cursor: pointer;
     line-height: .9;
     padding: 0.6rem 0.6rem;
@@ -14163,7 +14163,7 @@ textarea.parsley-success:focus {
 }
 
 .main-content-title {
-    color: #170c6b;
+    color: #5f6eb0;
     font-weight: 500;
     font-size: 32px;
     text-indent: -1px;
@@ -66979,7 +66979,7 @@ a.tag-addon:hover {
     bottom: 0;
     width: 240px;
     overflow-y: auto;
-    background-color: #25233c;
+    background-color: #5f6eb0;
     z-index: 1000;
     visibility: hidden;
     transform: translateX(-240px);

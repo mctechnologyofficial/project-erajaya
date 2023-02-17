@@ -9,6 +9,11 @@
                     <a class="nav-link" href="{{ route('sales.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
                 </li>
             @endrole
+            @role('Warehouse')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('warehouse.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
+                </li>
+            @endrole
             @role('Admin')
                 <li class="nav-item {{ Route::is('admin.user.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i>User</a>

@@ -24,7 +24,7 @@ class UserRoleSeeder extends Seeder
             'remember_token'        => Str::random(100),
             'created_at'            => Carbon::now(),
             'updated_at'            => Carbon::now(),
-            'image'                 => null
+            'image'                 => 'storage/user/me.jpeg'
         ];
 
         $sales = User::create(array_merge([

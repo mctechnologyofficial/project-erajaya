@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Sales\TransactionController;
+use App\Http\Controllers\Warehouse\TransactionController as WarehouseTransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,12 @@ Route::group(['middleware' => ['role:Sales']], function () {
         Route::get('/transaction/create-transaction', 'createTransaction')->name('sales.transaction.createtransaction');
         Route::post('/transaction/store-transaction', 'storeTransaction')->name('sales.transaction.storetransaction');
         Route::get('/transaction/getprice/{id}', 'getPrice');
+    });
+});
+
+Route::group(['middleware' => ['role:Warehouse']], function () {
+    Route::controller(WarehouseTransactionController::class)->group(function(){
+        Route::get('/transaction', 'index')->name('warehouse.transaction.index');
     });
 });
 
