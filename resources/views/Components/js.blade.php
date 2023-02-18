@@ -10,24 +10,12 @@
 <!-- Peity js-->
 <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
 
-<!-- Flot Chart js-->
-<script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-
 <!-- Jquery-Ui js-->
 <script src="{{ asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
 
 <!-- Select2 js-->
 <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-
-<!--MutipleSelect js-->
-<script src="{{ asset('assets/plugins/multipleselect/multiple-select.js') }}"></script>
-<script src="{{ asset('assets/plugins/multipleselect/multi-select.js') }}"></script>
-
-<!-- Internal Morris js -->
-<script src="{{ asset('assets/plugins/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/morris.js/morris.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.js') }}"></script>
 
 <!-- Sidebar js-->
 <script src="{{ asset('assets/plugins/sidebar/sidebar.js') }}"></script>
@@ -37,11 +25,6 @@
 
 <!-- Sticky js-->
 <script src="{{ asset('assets/js/sticky.js') }}"></script>
-
-<!-- Circle Progress js-->
-<script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
-<script src="{{ asset('assets/js/chart-circle.js') }}"></script>
-
 <!-- Dashboard js-->
 <script src="{{ asset('assets/js/index.js') }}"></script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Warehouse;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -15,9 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::selectRaw('products.product_name AS productname, transactions.*')
-        ->join('products', 'products.id', '=', 'transactions.product_id')
-        ->orderBy('created_at', 'DESC')
+        $transaction = Transaction::selectRaw('customers.name AS customername, transactions.*')
+        ->join('customers', 'customers.id', '=', 'transactions.customer_id')
         ->get();
 
         return view('Warehouse.Transaction.list', compact(['transaction']));
@@ -52,7 +52,12 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaction = TransactionDetail::selectRaw('products.product_name as productname, transaction_details.*')
+        ->join('products', 'products.id', '=', 'transaction_details.product_id')
+        ->where('transaction_id', $id)
+        ->get();
+
+        return view('Warehouse.Transaction.show', compact(['transaction', 'id']));
     }
 
     /**

@@ -19,8 +19,9 @@
                             <thead>
                                 <tr>
                                     <th class="wd-5p">Transaction ID</th>
-                                    <th class="wd-10p">Product Name</th>
-                                    <th class="wd-5p">Qty</th>
+                                    <th class="wd-20p">Customer Name</th>
+                                    <th class="wd-10p">Total Price</th>
+                                    <th class="wd-15p">Input By</th>
                                     <th class="wd-15p">Transaction Date</th>
                                     <th class="wd-15p">Action</th>
                                 </tr>
@@ -29,18 +30,15 @@
                                 @foreach ($transaction as $data)
                                     <tr>
                                         <td>{{ $data->id }}</td>
-                                        <td>{{ $data->productname }}</td>
-                                        <td>{{ $data->qty }}</td>
+                                        <td>{{ $data->customername }}</td>
+                                        <td>{{ $data->total_price }}</td>
+                                        <td>{{ $data->input_by }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at) }}</td>
                                         <td>
                                             @if ($data->status == 0)
-                                                <form action="{{ route('warehouse.transaction.update', $data->id) }}" method="post">
-                                                    @csrf
-                                                    @method('put')
-                                                    <button type="submit" class="btn btn-outline-success btn-block">Accept</button>
-                                                </form>
+                                                <a href="{{ route('warehouse.transaction.show', $data->id) }}" class="btn btn-outline-info btn-block">See Details</a>
                                             @else
-                                                <a href="javascript:void(0)" class="btn btn-outline-info btn-block">Already Accepted</a>
+                                                <a href="javascript:void(0)" class="btn btn-outline-danger btn-block">Already Accepted!</a>
                                             @endif
                                         </td>
                                     </tr>

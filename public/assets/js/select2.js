@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	$('.select2').select2({
-		placeholder: 'Choose one',
+		// placeholder: 'Choose one',
 		searchInputPlaceholder: 'Search',
-		 width: '100%'
+		width: '100%'
 	});
-	
+
 	function formatState (state) {
 	  if (!state.id) { return state.text; }
 	  var $state = $(
@@ -20,5 +20,5 @@ $(document).ready(function() {
 	  templateSelection: formatState,
 	   escapeMarkup: function(m) { return m; }
 	});
-	
+
 });

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotifyMail;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
@@ -18,9 +21,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::selectRaw('customers.name AS customername, products.product_name AS productname, transactions.*')
+        $transaction = Transaction::selectRaw('customers.name AS customername, transactions.*')
         ->join('customers', 'customers.id', '=', 'transactions.customer_id')
-        ->join('products', 'products.id', '=', 'transactions.product_id')
         ->get();
 
         return view('Sales.Transaction.list', compact(['transaction']));
@@ -33,7 +35,8 @@ class TransactionController extends Controller
      */
     public function createCustomer()
     {
-        return view('Sales.Transaction.addcustomer');
+        $customer = Customer::all();
+        return view('Sales.Transaction.addcustomer', compact(['customer']));
     }
 
     /**
@@ -56,17 +59,23 @@ class TransactionController extends Controller
      */
     public function storeCustomer(Request $request)
     {
-        $customer = Customer::create([
-            'nik'       => $request->nik,
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'address'   => $request->address,
-        ]);
+        if($request->customerid == ""){
+            $customer = Customer::create([
+                'nik'       => $request->nik,
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'phone'     => $request->phone,
+                'address'   => $request->address,
+            ]);
 
-        Session::put('customerid', $customer->id);
+            Session::put('customerid', $customer->id);
 
-        return redirect()->route('sales.transaction.createtransaction');
+            return redirect()->route('sales.transaction.createtransaction');
+        }else{
+            Session::put('customerid', $request->customerid);
+
+            return redirect()->route('sales.transaction.createtransaction');
+        }
     }
 
     /**
@@ -77,26 +86,42 @@ class TransactionController extends Controller
      */
     public function storeTransaction(Request $request)
     {
-        $product = Product::find($request->productid);
+        $transactionid = "EJ-".mt_rand(0, 9999999999);
+        $customerid = Session::get('customerid');
 
-        if($product->stock > 0){
-            $transactionid = "EJ-".mt_rand(0, 9999999999);
-            $customerid = Session::get('customerid');
+        $transaction = Transaction::create([
+            'id'                => $transactionid,
+            'customer_id'       => $customerid,
+            'total_price'       => $request->totalprice,
+            'input_by'          => $request->inputby,
+            'status'            => 0
+        ]);
 
-            $transaction = Transaction::create([
-                'id'                => $transactionid,
-                'customer_id'       => $customerid,
-                'product_id'        => $request->productid,
-                'qty'               => $request->qty,
-                'total_price'       => $request->totalprice,
-                'input_by'          => $request->inputby,
-                'status'            => 0
-            ]);
-            return redirect()->route('sales.transaction.index')->with('success', 'Transaction Success !');
-        }else{
-            return redirect()->route('sales.transaction.createtransaction')->with('failed', 'Out of Stock !');
+        Session::put('transactionid', $transaction->id);
+
+        foreach($request->input('productid') as $key => $value) {
+
+            $Record = new TransactionDetail;
+
+            $Record->transaction_id = $transaction->id;
+            $Record->product_id = $request->get('productid')[$key];
+            $Record->qty = $request->get('qty')[$key];
+            $Record->subtotal = $request->get('subtotal')[$key];
+
+            $Record->save();
         }
 
+        $mail = Mail::to('manusiacoding29@gmail.com')->send(new NotifyMail());
+
+        if (!$mail) {
+            $response['data'] = "Failed";
+
+            return response()->json($response);
+        }else{
+            $response['data'] = "Success";
+
+            return response()->json($response);
+        }
     }
 
     /**
@@ -112,5 +137,21 @@ class TransactionController extends Controller
         $response['data'] = $product->price;
 
         return response()->json($response);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $transaction = TransactionDetail::selectRaw('products.product_name as productname, transaction_details.*')
+        ->join('products', 'products.id', '=', 'transaction_details.product_id')
+        ->where('transaction_id', $id)
+        ->get();
+
+        return view('Sales.Transaction.show', compact(['transaction']));
     }
 }

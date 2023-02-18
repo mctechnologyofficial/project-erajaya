@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Sales\InvoiceController;
 use App\Http\Controllers\Sales\TransactionController;
 use App\Http\Controllers\Warehouse\TransactionController as WarehouseTransactionController;
 use Illuminate\Http\Request;
@@ -36,21 +37,32 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['role:Sales']], function () {
+
     Route::controller(TransactionController::class)->group(function(){
         Route::get('/transaction', 'index')->name('sales.transaction.index');
+        Route::get('/transaction/{id}/show', 'show')->name('sales.transaction.show');
         Route::get('/transaction/create-customer', 'createCustomer')->name('sales.transaction.createcustomer');
         Route::post('/transaction/store-customer', 'storeCustomer')->name('sales.transaction.storecustomer');
         Route::get('/transaction/create-transaction', 'createTransaction')->name('sales.transaction.createtransaction');
         Route::post('/transaction/store-transaction', 'storeTransaction')->name('sales.transaction.storetransaction');
         Route::get('/transaction/getprice/{id}', 'getPrice');
+        Route::get('/send-email', 'index')->name('sales.sendemail.index');
     });
+
+    Route::controller(InvoiceController::class)->group(function(){
+        Route::get('/invoice', 'index')->name('sales.invoice.index');
+    });
+
 });
 
 Route::group(['middleware' => ['role:Warehouse']], function () {
+
     Route::controller(WarehouseTransactionController::class)->group(function(){
         Route::get('/transactions', 'index')->name('warehouse.transaction.index');
+        Route::get('/transactions/{id}/show', 'show')->name('warehouse.transaction.show');
         Route::put('/transactions/{id}/update', 'update')->name('warehouse.transaction.update');
     });
+
 });
 
 Route::group(['middleware' => ['role:Admin']], function () {
@@ -74,4 +86,5 @@ Route::group(['middleware' => ['role:Admin']], function () {
         Route::put('/product/{id}/update', 'update')->name('admin.product.update');
         Route::delete('/product/{id}/destroy', 'destroy')->name('admin.product.destroy');
     });
+
 });
