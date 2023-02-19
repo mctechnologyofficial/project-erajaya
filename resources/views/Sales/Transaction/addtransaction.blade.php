@@ -164,7 +164,7 @@
                                     'Transaction Success!',
                                     'success'
                                 ).then((result) => {
-                                    window.location.replace("http://localhost:8000/transaction");
+                                    window.location.replace("http://localhost:8000/sales/transaction");
                                 });
                             }else{
                                 Swal.fire(
