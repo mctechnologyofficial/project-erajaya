@@ -5,12 +5,12 @@
                 <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i>Dashboard</a>
             </li>
             @role('Sales')
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('sales.transaction.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('sales.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
                 </li>
             @endrole
             @role('Warehouse')
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('warehouse.transaction.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('warehouse.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
                 </li>
             @endrole
@@ -23,8 +23,13 @@
                 </li>
             @endrole
             @role('Cashier')
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('cashier.transaction.*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('cashier.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
+                </li>
+            @endrole
+            @role('Super Admin')
+                <li class="nav-item {{ Route::is('superadmin.transaction.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('superadmin.transaction.index') }}"><i class="fas fa-dollar-sign"></i>Transaction</a>
                 </li>
             @endrole
         </ul>

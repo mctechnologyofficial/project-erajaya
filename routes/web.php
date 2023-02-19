@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Cashier\TransactionController as CashierTransactionController;
 use App\Http\Controllers\Sales\TransactionController;
+use App\Http\Controllers\SuperAdmin\TransactionController as SuperAdminTransactionController;
 use App\Http\Controllers\Warehouse\TransactionController as WarehouseTransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,6 +82,19 @@ Route::group(['middleware' => ['role:Cashier']], function () {
             Route::get('/transaction', 'index')->name('cashier.transaction.index');
             Route::get('/transaction/{id}/show', 'show')->name('cashier.transaction.show');
             Route::put('/transaction/{id}/update', 'update')->name('cashier.transaction.update');
+        });
+
+    });
+
+});
+
+Route::group(['middleware' => ['role:Super Admin']], function () {
+
+    Route::prefix('superadmin')->group(function(){
+
+        Route::controller(SuperAdminTransactionController::class)->group(function(){
+            Route::get('/transaction', 'index')->name('superadmin.transaction.index');
+            Route::get('/transaction/{id}/show', 'show')->name('superadmin.transaction.show');
         });
 
     });
