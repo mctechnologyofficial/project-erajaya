@@ -41,11 +41,7 @@
                                         <td>{{ $data->total_price }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->created_at) }}</td>
                                         <td>
-                                            @if ($data->status == 0)
-                                                <a href="{{ route('cashier.transaction.show', $data->id) }}" class="btn btn-outline-info btn-block">See Details</a>
-                                            @else
-                                                <a href="javascript:void(0)" class="btn btn-outline-danger btn-block">Already Accepted!</a>
-                                            @endif
+                                            <a href="{{ route('cashier.transaction.show', $data->id) }}" class="btn btn-outline-info btn-block">See Details</a>
                                         </td>
                                     </tr>
                                 @endforeach

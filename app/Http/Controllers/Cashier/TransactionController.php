@@ -85,9 +85,13 @@ class TransactionController extends Controller
 
         if($transaction->status == 0){
             return redirect()->route('cashier.transaction.index')->with('error', 'Product with transaction id ' . $id . ' has not arrived! Be patient please.');
-        }else{
+        }
+        else if($transaction->status == 2){
+            return redirect()->route('cashier.transaction.index')->with('error', "Transaction with id " . $id . " has been completed! You can't update it anymore.");
+        }
+        else{
             Transaction::where('id', $id)->update([
-                'status'    => 1,
+                'status'    => 2,
             ]);
 
             return redirect()->route('cashier.transaction.index')->with('success', 'Transaction with id '. $id . ' has been updated successfully !');
