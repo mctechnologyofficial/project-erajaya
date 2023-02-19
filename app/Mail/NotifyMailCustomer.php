@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Session;
 
-class NotifyMail extends Mailable
+class NotifyMailCustomer extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +32,7 @@ class NotifyMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: '1 Transaction Must Be Validated!',
+            subject: 'Payment for Invoice #'.Session::get('transactionid'),
         );
     }
 
@@ -44,7 +44,7 @@ class NotifyMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'layouts.mail',
+            view: 'layouts.mailcustomer',
         );
     }
 

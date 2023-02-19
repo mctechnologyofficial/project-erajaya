@@ -28,14 +28,8 @@
     .w-50{
         width:50%;
     }
-    .w-85{
-        width:85%;
-    }
-    .w-15{
-        width:15%;
-    }
     .logo img{
-        width:200px;
+        width:130px;
         height:60px;
     }
     .gray-color{
@@ -82,12 +76,11 @@
 </div>
 <div class="add-detail mt-10">
     <div class="w-50 float-left mt-10">
-        <p class="m-0 pt-5 text-bold w-100">Invoice Id - <span class="gray-color">#1</span></p>
-        <p class="m-0 pt-5 text-bold w-100">Order Id - <span class="gray-color">AB123456A</span></p>
-        <p class="m-0 pt-5 text-bold w-100">Order Date - <span class="gray-color">22-01-2023</span></p>
+        <p class="m-0 pt-5 text-bold w-100">Transaction Id : <span class="gray-color">{{ $transactions->id }}</span></p>
+        <p class="m-0 pt-5 text-bold w-100">Order Date : <span class="gray-color">{{ \Carbon\Carbon::parse($transactions->created_at) }}</span></p>
     </div>
     <div class="w-50 float-left logo mt-10">
-        <img src="https://techsolutionstuff.com/frontTheme/assets/img/logo_200_60_dark.png" alt="Logo">
+        <img src="{{ public_path('assets/img/brand/erajaya.png') }}" alt="Logo">
     </div>
     <div style="clear: both;"></div>
 </div>
@@ -98,20 +91,28 @@
             <th class="w-50">To</th>
         </tr>
         <tr>
-            <td>
+            <td align="left" valign="top">
                 <div class="box-text">
-                    <p>Mountain View,</p>
-                    <p>California,</p>
-                    <p>United States</p>
-                    <p>Contact: (650) 253-0000</p>
+                    <strong>Erajaya</strong>
+                    <p>
+                        Jl. Bandengan Selatan No.19-20 Pekojan - Tambora
+                    </p>
+                    <p>
+                        Jakarta Barat
+                    </p>
+                    <p>
+                        Indonesia, 11240
+                    </p>
+                        corporate@erajaya.com
+                    </p>
                 </div>
             </td>
-            <td>
+            <td align="left" valign="top">
                 <div class="box-text">
-                    <p> 410 Terry Ave N,</p>
-                    <p>Seattle WA 98109,</p>
-                    <p>United States</p>
-                    <p>Contact: 1-206-266-1000</p>
+                    <Strong>{{ $customer->name }} ({{ $customer->nik }})</Strong>
+                    <p>{{ $customer->address }}</p>
+                    <p>{{ $customer->email }}</p>
+                    <p>{{ $customer->phone }}</p>
                 </div>
             </td>
         </tr>
@@ -120,70 +121,40 @@
 <div class="table-section bill-tbl w-100 mt-10">
     <table class="table w-100 mt-10">
         <tr>
-            <th class="w-50">Payment Method</th>
-            <th class="w-50">Shipping Method</th>
+            <th class="w-100">Payment Method</th>
         </tr>
         <tr>
-            <td>Cash On Delivery</td>
-            <td>Free Shipping - Free Shipping</td>
+            <td align="center" valign="middle">Cash</td>
         </tr>
     </table>
 </div>
 <div class="table-section bill-tbl w-100 mt-10">
     <table class="table w-100 mt-10">
-        <tr>
-            <th class="w-50">SKU</th>
-            <th class="w-50">Product Name</th>
-            <th class="w-50">Price</th>
-            <th class="w-50">Qty</th>
-            <th class="w-50">Subtotal</th>
-            <th class="w-50">Tax Amount</th>
-            <th class="w-50">Grand Total</th>
-        </tr>
-        <tr align="center">
-            <td>M101</td>
-            <td>Andoid Smart Phone</td>
-            <td>$500.2</td>
-            <td>3</td>
-            <td>$1500</td>
-            <td>$50</td>
-            <td>$1550.20</td>
-        </tr>
-        <tr align="center">
-            <td>M102</td>
-            <td>Andoid Smart Phone</td>
-            <td>$250</td>
-            <td>2</td>
-            <td>$500</td>
-            <td>$50</td>
-            <td>$550.00</td>
-        </tr>
-        <tr align="center">
-            <td>T1010</td>
-            <td>Andoid Smart Phone</td>
-            <td>$1000</td>
-            <td>5</td>
-            <td>$5000</td>
-            <td>$500</td>
-            <td>$5500.00</td>
-        </tr>
-        <tr>
-            <td colspan="7">
-                <div class="total-part">
-                    <div class="total-left w-85 float-left" align="right">
-                        <p>Sub Total</p>
-                        <p>Tax (18%)</p>
-                        <p>Total Payable</p>
-                    </div>
-                    <div class="total-right w-15 float-left text-bold" align="right">
-                        <p>$7600</p>
-                        <p>$400</p>
-                        <p>$8000.00</p>
-                    </div>
-                    <div style="clear: both;"></div>
-                </div>
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th class="w-50">Product ID</th>
+                <th class="w-50">Product Name</th>
+                <th class="w-50">Price</th>
+                <th class="w-50">Qty</th>
+                <th class="w-50">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($order as $data)
+                <tr>
+                    <td align="center">{{ $data->id }}</td>
+                    <td align="left">{{ $data->product_name }}</td>
+                    <td align="center">{{ $data->price }}</td>
+                    <td align="center">{{ $data->qty }}</td>
+                    <td align="center">Rp {{ $data->subtotal }}</td>
+                </tr>
+            @endforeach
+            <tr>
+                <td colspan="5" align="right">
+                    Total Payable : Rp <strong>{{ $transactions->total_price }}</strong>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
 </html>

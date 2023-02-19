@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
 use App\Mail\NotifyMail;
+use App\Mail\NotifyMailCustomer;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -11,6 +12,8 @@ use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -111,7 +114,22 @@ class TransactionController extends Controller
             $Record->save();
         }
 
+        $transactions = Transaction::find(Session::get('transactionid'));
+        $customer = Customer::find(Session::get('customerid'));
+        $order = Transaction::selectRaw('products.product_name, transaction_details.qty, products.id, products.price, transaction_details.subtotal, transactions.total_price')
+        ->join('transaction_details', 'transaction_details.transaction_id', '=', 'transactions.id')
+        ->join('products', 'transaction_details.product_id', '=', 'products.id')
+        ->where('transactions.id', Session::get('transactionid'))
+        ->get();
+
+        $pdf = Pdf::loadView('layouts.invoices', compact(['transactions', 'customer', 'order']));
+        set_time_limit(300);
+
+        $content = $pdf->download()->getOriginalContent();
+        Storage::put('invoice/'. $transactions->id .'_erajaya_transaction_invoice.pdf', $content);
+
         $mail = Mail::to('manusiacoding29@gmail.com')->send(new NotifyMail());
+        Mail::to($customer->email)->send(new NotifyMailCustomer());
 
         if (!$mail) {
             $response['data'] = "Failed";
@@ -122,6 +140,7 @@ class TransactionController extends Controller
 
             return response()->json($response);
         }
+
     }
 
     /**

@@ -10,7 +10,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!-- Favicon -->
-		<link rel="icon" href="{{ asset('assets/img/brand/favicon.ico') }}" type="image/x-icon"/>
+		<link rel="icon" href="{{ asset('assets/img/brand/ERAA.png') }}" type="image/png" />
 
 		<!-- Title -->
 		<title>Erajaya | @yield('title')</title>

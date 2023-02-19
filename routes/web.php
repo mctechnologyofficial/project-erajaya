@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Sales\InvoiceController;
 use App\Http\Controllers\Sales\TransactionController;
 use App\Http\Controllers\Warehouse\TransactionController as WarehouseTransactionController;
 use Illuminate\Http\Request;
@@ -22,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
+});
+
+Route::get('/invoices', function () {
+    return view('layouts.invoices');
 });
 
 // force logout routes, temporary for debugging
@@ -47,10 +50,6 @@ Route::group(['middleware' => ['role:Sales']], function () {
         Route::post('/transaction/store-transaction', 'storeTransaction')->name('sales.transaction.storetransaction');
         Route::get('/transaction/getprice/{id}', 'getPrice');
         Route::get('/send-email', 'index')->name('sales.sendemail.index');
-    });
-
-    Route::controller(InvoiceController::class)->group(function(){
-        Route::get('/invoice', 'index')->name('sales.invoice.index');
     });
 
 });

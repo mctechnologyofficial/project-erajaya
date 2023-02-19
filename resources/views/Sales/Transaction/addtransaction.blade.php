@@ -59,16 +59,12 @@
                                 <th>Product Name</th>
                                 <th>Product Price</th>
                                 <th>Qty</th>
-                                <th>Subtotal</th>
+                                <th colspan="2">Subtotal</th>
                             </thead>
                             <tbody>
                                 {{--  --}}
                             </tbody>
                         </table>
-                    </form>
-                    <form action="" id="showinvoice" method="GET">
-                        @csrf
-                        <button type="submit" class="d-none" id="btntriggerinvoice"></button>
                     </form>
                 </div>
             </div>
@@ -109,12 +105,12 @@
                 var b = $('#price').val();
                 c = (a * b);
 
-                var totalprice = parseInt($('#totalprice').val());
-                var total = totalprice + c;
-                var p = totalprice - total;
+                // var totalprice = parseInt($('#totalprice').val());
+                // var total = totalprice + c;
+                // var p = totalprice - total;
 
                 $('#subtotal').val(c).trigger('change');
-                $('#totalprice').val(total).trigger('change');
+                // $('#totalprice').val(total).trigger('change');
 
             });
 
@@ -127,14 +123,17 @@
                 var name = $('#productid option:selected').html();
                 var price = $('#price').val();
                 var qty = $('#qty').val();
-                var subtotal = $('#subtotal').val();
+                var subtotal = parseInt($('#subtotal').val());
+                var oldtotal = parseInt($('#totalprice').val());
+                var total = oldtotal + subtotal;
 
                 var data = "<tr>" +
                                 "<td> <input type='text' name='productid[]' class='border-0 form-control text-dark' value='" + id + "' readonly /></td>" +
                                 "<td> <input type='text' name='name[]' class='border-0 form-control text-dark' value='" + name + "' readonly /></td>" +
                                 "<td> <input type='text' name='price[]' class='border-0 form-control text-dark' value='" + price + "' readonly /></td>" +
                                 "<td> <input type='text' name='qty[]' class='border-0 form-control text-dark' value='" + qty + "' readonly /></td>" +
-                                "<td> <input type='text' name='subtotal[]' class='border-0 form-control text-dark' value='" + subtotal + "' readonly /></td>" +
+                                "<td> <input type='text' name='subtotal[]' id='tableprice' class='border-0 form-control text-dark' value='" + subtotal + "' readonly /></td>" +
+                                "<td> <input type='button' class='btn btn-outline-danger btn-block' id='deleterow' value='Delete' /></td>" +
                             "</tr>";
 
                 $('#buylist tbody').append(data);
@@ -143,6 +142,7 @@
                 $('#price').val("");
                 $('#qty').val("");
                 $('#subtotal').val("");
+                $('#totalprice').val(total).trigger('change');
                 $('#price').val(0);
             });
 
@@ -164,10 +164,7 @@
                                     'Transaction Success!',
                                     'success'
                                 ).then((result) => {
-                                    if($('#showinvoice').attr('action', "{{ route('sales.invoice.index') }}")){
-                                        $('#btntriggerinvoice').click();
-                                        // window.location.replace("http://localhost:8000/transaction");
-                                    }
+                                    window.location.replace("http://localhost:8000/transaction");
                                 });
                             }else{
                                 Swal.fire(
@@ -185,6 +182,15 @@
                         'error'
                     );
                 }
+            });
+
+            $("#buylist").on('click', '#deleterow', function(){
+                var oldtotal = $('#totalprice').val();
+                var price = $(this).closest("tr").find('#tableprice').val();
+                var total = (oldtotal - price);
+                $('#totalprice').val(total).trigger('change');
+
+                $(this).closest('tr').remove();
             });
         });
     </script>
